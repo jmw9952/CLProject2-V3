@@ -1,0 +1,85 @@
+/* Reset body margin and padding */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+
+ canvas {
+        position: fixed; /* Keeps it attached to the viewport as you scroll */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh; /* Only covers the visible screen area */
+        z-index: 10;
+        pointer-events: none;
+    }
+
+/* Style for the image container */
+.images {
+    display: flex;
+    flex-wrap: wrap; /* Allows images to wrap to a new row */
+    gap: 16px;
+    padding: 16px;
+    max-width: 1200px;
+    margin: 0 auto;
+    justify-content: center; /* Centers images within the container */
+}
+
+/* Each image container for two-column layout */
+.images img {
+    width: calc(33% - 16px); /* Each image takes up half the container width with spacing */
+    max-width: 600px; /* Limits image size for larger screens */
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+    filter: blur(8px); /* Initial blur */
+    transition: transform 0.3s ease, filter 0.3s ease; /* Smooth transition */
+}
+
+/* Shift the view of the top-left image */
+.images img:first-child {
+    object-position: 10% 50%; /* Adjusts the view to show more of the left side */
+}
+
+/* Hover effect to unblur and slightly enlarge the image */
+.images img:hover {
+    filter: blur(0); 
+    transform: scale(1.05); /* Slight zoom */
+}
+
+/* Responsive design: single column on smaller screens */
+@media (max-width: 768px) {
+    .images img {
+        width: 100%; /* Full width on smaller screens */
+    }
+}
+#overlay-text {
+    position: fixed;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 20; /* Higher than the canvas and images */
+    font-size: 6vw; /* Responsive font size */
+    font-weight: bold;
+    color: black;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    width: 200vw;
+    height: 200vh;
+    background-color: white; /* White background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none; /* Prevent this from blocking clicks */
+}
+
+#overlay-image {
+    position: absolute;
+    top: 60%;
+    left: 43%;
+    width: 400px; /* Set the size of the image */
+    height: auto;
+    pointer-events: none; /* Ensures clicks go through the image */
+}
